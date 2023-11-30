@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>Движение БУ</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">Движение буровых установок</a>
+    </nav>
+
+    <div class="container pt-4">
+      <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="card card-body">
+        <form action="/BY_inf/update/{{BY.kust}}" method="POST">
+          <div class="form-group">
+            <input type="text" name="kust" value="{{BY.kust}}" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" name="m_e" value="{{BY.m_e}}" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" name="exit_date" value="{{BY.exit_date}}" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" name="GP" value="{{BY.GP}}" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" name="RUO" value="{{BY.RUO}}" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" name="SNPH" value="{{BY.SNPH}}" class="form-control">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">
+              Обновить
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+    </div>
+
+<script>
+const btnDelete= document.querySelectorAll('.btn-delete');
+if(btnDelete) {
+  const btnArray = Array.from(btnDelete);
+  btnArray.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      if(!confirm('Вы точно хотите удалить объект?')){
+        e.preventDefault();
+      }
+    });
+  })
+}
+
+$(document).ready(function() {
+    $('#example').DataTable({
+      "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "All"]],
+        "iDisplayLength": 10
+       }
+    );
+} );
+
+</script>
+  </body>
+</html>
+
