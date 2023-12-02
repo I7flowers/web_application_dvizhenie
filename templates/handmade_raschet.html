@@ -1,150 +1,56 @@
+{% extends 'base1.html' %}
 
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/css/extra.css">
-    <title>Выбор движения</title>
-  </head>
 
-  <body>
-  <h1>Ручное определение движения</h1>
+{% block body %}
+<div class="row"><h3>Ручное определение движения на 1,5 месяца вперед</h3></div>
+<div class="row">
+<div class="col-md-18">
+    <table id="example" class="table table-striped table-bordered" style="width:150%">
+        <thead>
+            <tr>
+                <th colspan="2">Движение</th>
+                <th colspan="8">Рейтинг</th>
+                <td rowspan="2"><b>Действия</b></td>
+            </tr>
+            <tr>
+                <th>С куста</th>
+                <th onclick="sortTable(0)">Выход</th>
+                <th>На куст</th>
+                <th>Общий</th>
+                <th>ГП</th>
+                <th>1 этап</th>
+                <th>2 этап</th>
+                <th>Логистика</th>
+                <th>РУО</th>
+                <th>Комментарий</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in list_for_handmade_raschet %}
+            <tr>
+                 <td>{{row[0]}}</td>
+                 <td>{{row[9]}}</td>
+                 <td>{{row[1]}}</td>
+                 <td>{{row[2]}}</td>
+                 <td>{{row[3]}}</td>
+                 <td>{{row[4]}}</td>
+                 <td>{{row[5]}}</td>
+                 <td>{{row[6]}}</td>
+                 <td>{{row[7]}}</td>
+                 <td>{{row[8]}}</td>
+                 <td>
+                    <a href="/handmade_raschet/commit/{{row[0]}}/{{row[1]}}" class="btn btn-danger btn-sm">Подтвердить</a>
+                 </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="row"><h3>Последующее движение рассчитывается автоматически по максимальному рейтингу</h3></div>
 
-<div class="tab">
-   <p>Для следующих 45 дней движение определяется вручную на основании сформированного рейтинга</p>
-   <table border="1">
-   <tr>
-    <th>С куста</th>
-    <th>На куст</th>
-    <th>Общий рейтинг</th>
-    <th>Рейтинг грузоподъемности</th>
-    <th>Рейтинг 1 этапа</th>
-    <th>Рейтинг 2 этапа</th>
-    <th>Рейтинг РУО</th>
-    <th>Рейтинг транспортировки</th>
-   </tr>
-   <tbody>
-      <tr>
-         <td scope="row">355у</td>
-         <td>863</td>
-         <td>95</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>5</td>
-      <tr>
-         <tr>
-         <td scope="row">355у</td>
-         <td>863</td>
-         <td>95</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>5</td>
-      <tr>
-         <tr>
-         <td scope="row">355у</td>
-         <td>863</td>
-         <td>95</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>5</td>
-      <tr>
-         <tr>
-         <td scope="row">355у</td>
-         <td>863</td>
-         <td>95</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>5</td>
-      <tr>
-         <tr>
-         <td scope="row">355у</td>
-         <td>863</td>
-         <td>95</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>5</td>
-      <tr>
-         <tr>
-         <td scope="row">355у</td>
-         <td>863</td>
-         <td>95</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>5</td>
-      <tr>
-         <tr>
-         <td scope="row">355у</td>
-         <td>863</td>
-         <td>95</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>5</td>
-      <tr>
-         <tr>
-         <td scope="row">355у</td>
-         <td>863</td>
-         <td>95</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>5</td>
-      <tr>
-         <tr>
-         <td scope="row">355у</td>
-         <td>863</td>
-         <td>95</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>5</td>
-      <tr>
-         <tr>
-         <td scope="row">355у</td>
-         <td>863</td>
-         <td>95</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>5</td>
-      <tr>
-         <tr>
-         <td scope="row">355у</td>
-         <td>863</td>
-         <td>95</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>10</td>
-         <td>5</td>
-      <tr>
-
-   </tbody>
-  </table>
-   <form action="/home">
-     <button><b>Основная страница</b></button>
+   <form action="index_after_raschet">
+     <button class="btn btn-primary_my btn-block"><b>Перейти к результату</b></button>
    </form>
-   <p>Движение остальных БУ определится автоматически по максимальному рейтингу</p>
 
 </div>
-
-
-  </body>
-</html>
+{% endblock %}

@@ -1,6 +1,9 @@
 from flask import Flask, render_template, url_for, request, flash, redirect
+
 import psycopg2
 import psycopg2.extras
+from dvizhenie.starting import main, final
+
 
 app = Flask(__name__)
 app.secret_key = '122333'
@@ -14,9 +17,12 @@ conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_
 
 
 @app.route('/')
-@app.route('/home')
 def index():
-    return render_template("index.html")
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    s = "SELECT * FROM final"
+    cur.execute(s)
+    list_final = cur.fetchall()
+    return render_template("index.html", list_final=list_final)
 
 
 @app.route('/BY_inf')
@@ -149,12 +155,44 @@ def delete_kust(kust):
 
 @app.route('/handmade_raschet')
 def handmade_raschet():
-    return render_template("handmade_raschet.html")
+    main()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    s = "SELECT * FROM for_handmade_raschet"
+    cur.execute(s)
+    list_for_handmade_raschet = cur.fetchall()
+    return render_template("handmade_raschet.html", list_for_handmade_raschet=list_for_handmade_raschet)
 
 
-@app.route('/bd')
-def bd():
-    return render_template("for_bd.html")
+@app.route('/handmade_raschet1')
+def handmade_raschet1():
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    s = "SELECT * FROM for_handmade_raschet"
+    cur.execute(s)
+    list_for_handmade_raschet = cur.fetchall()
+    return render_template("handmade_raschet.html", list_for_handmade_raschet=list_for_handmade_raschet)
+
+
+@app.route('/handmade_raschet/commit/<string:kust_ex>/<string:kust_ent>', methods=['POST', 'GET'])
+def commit(kust_ex, kust_ent):
+    print(kust_ex, kust_ent)
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cur.execute('SELECT * FROM for_handmade_raschet WHERE kust_ex=%s AND kust_ent=%s', (kust_ex, kust_ent))
+    data = cur.fetchone()
+    print(data)
+    cur.execute('INSERT INTO final(kust_ex, exit_date, kust_ent, gen_rating, comment) VALUES (%s, %s, %s, %s, %s)', (data[0], data[9], data[1], data[2], data[8]))
+    cur.execute('DELETE FROM for_handmade_raschet WHERE kust_ex=%s OR kust_ent=%s', (data[0], data[1]))
+    conn.commit()
+    return redirect(url_for('handmade_raschet1'))
+
+
+@app.route('/index_after_raschet')
+def index_auto_raschet():
+    final()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    s = "SELECT * FROM final"
+    cur.execute(s)
+    list_final = cur.fetchall()
+    return render_template("index.html", list_final=list_final)
 
 
 if __name__ == "__main__":
