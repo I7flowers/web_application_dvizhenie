@@ -41,11 +41,11 @@ def add_BY():
         kust = request.form['kust']
         m_e = request.form['m_e']
         exit_date = request.form['exit_date']
-        GP = request.form['GP']
-        RUO = request.form['RUO']
-        SNPH = request.form['SNPH']
+        gp = request.form['GP']
+        ruo = request.form['RUO']
+        snph = request.form['SNPH']
         cur.execute('INSERT INTO exit_(kust, m_e, exit_date, GP, RUO, SNPH) VALUES (%s, %s, %s, %s, %s, %s)',
-                    (kust, m_e, exit_date, GP, RUO, SNPH))
+                    (kust, m_e, exit_date, gp, ruo, snph))
         conn.commit()
         flash('Информация успешно добавлена')
         return redirect(url_for('BY_inf'))
@@ -67,11 +67,11 @@ def update_BY(kust):
         kust = request.form['kust']
         m_e = request.form['m_e']
         exit_date = request.form['exit_date']
-        GP = request.form['GP']
-        RUO = request.form['RUO']
-        SNPH = request.form['SNPH']
+        gp = request.form['gp']
+        ruo = request.form['ruo']
+        snph = request.form['snph']
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cur.execute('UPDATE exit_ SET m_e=%s, exit_date=%s, GP=%s, RUO=%s, SNPH=%s WHERE kust=%s',(m_e, exit_date, GP, RUO, SNPH, kust))
+        cur.execute('UPDATE exit_ SET m_e=%s, exit_date=%s, GP=%s, RUO=%s, SNPH=%s WHERE kust=%s',(m_e, exit_date, gp, ruo, snph, kust))
         flash('Информация обновлена')
         conn.commit()
         return redirect(url_for('BY_inf'))

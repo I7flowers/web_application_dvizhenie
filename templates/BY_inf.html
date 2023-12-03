@@ -2,7 +2,7 @@
 
 
 {% block body %}
-<div class="row"><h3>Выход БУ</h3></div>
+<div class="row"><h3>Актуализация данных по выходу БУ</h3></div>
 <div class="row">
     <div class="col-md-4">
 {% with messages = get_flashed_messages() %}
@@ -20,24 +20,72 @@
 <div class="card card-body">
     <form action="{{url_for('add_BY')}}" method="POST">
         <div class="form-group">
-            <input type="text" name="kust" placeholder="КП">
+            <input type="text" required name="kust" placeholder="Куст">
         </div>
         <div class="form-group">
-            <input type="text" name="m_e" placeholder="Мeсторождение">
+            <select name="m_e" required>
+                <option>Месторождение</option>
+                <option value="ВС">ВС</option>
+                <option value="ВТК">ВТК</option>
+                <option value="ВПР">ВПР</option>
+                <option value="ВСТР">ВСТР</option>
+                <option value="ЕФР">ЕФР</option>
+                <option value="ЗУГ">ЗУГ</option>
+                <option value="КИН">КИН</option>
+                <option value="КУЗ">КУЗ</option>
+                <option value="КУДР">КУДР</option>
+                <option value="МБ">МБ</option>
+                <option value="МАМ">МАМ</option>
+                <option value="МАЙ">МАЙ</option>
+                <option value="МОСК">МОСК</option>
+                <option value="ОМБ">ОМБ</option>
+                <option value="ПЕТ">ПЕТ</option>
+                <option value="ПРД">ПРД</option>
+                <option value="ПРОп">ПРОп</option>
+                <option value="ПРОл">ПРОл</option>
+                <option value="ЭРГ">ЭРГ</option>
+                <option value="ПРЗ">ПРЗ</option>
+                <option value="САЛ">САЛ</option>
+                <option value="СОЛ">СОЛ</option>
+                <option value="СОР">СОР</option>
+                <option value="СБ">СБ</option>
+                <option value="СУГ">СУГ</option>
+                <option value="УГ">УБ</option>
+                <option value="ФН">ФН</option>
+                <option value="ЮБ">ЮБ</option>
+                <option value="ЮТЕПЛ">ЮТЕПЛ</option>
+                <option value="ЮС">ЮС</option>
+            </select>
         </div>
         <div class="form-group">
-            <input type="date" name="exit_date" placeholder="Выход">
+            <input type="date" name="exit_date" required placeholder="Выход">
         </div>
         <div class="form-group">
-            <input type="number" name="GP" placeholder="ГП">
+            <select name="gp" required>
+                <option>Грузоподъемность</option>
+                <option value="400">400</option>
+                <option value="320">320</option>
+                <option value="270">270</option>
+                <option value="250">250</option>
+                <option value="225">225</option>
+                <option value="200">200</option>
+            </select>
         </div>
         <div class="form-group">
-            <input type="number" name="RUO" placeholder="РУО">
+            <select name="ruo" required>
+                <option>Тип раствора</option>
+                <option value="1">РУО</option>
+                <option value="0">РВО</option>
+            </select>
         </div>
         <div class="form-group">
-            <input type="number" name="SNPH" placeholder="СНПХ">
+            <select name="snph" required>
+                <option>Буровой подрядчик</option>
+                <option value="1">СНПХ</option>
+                <option value="0">Другие ПО</option>
+            </select>
         </div>
-        <button class="btn btn-primary btn-block">Save</button>
+        <button class="btn btn-primary_my_2 btn-block">Добавить!</button>
     </form>
 </div>
 </div>
@@ -45,7 +93,7 @@
 <div class="col-md-8">
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
-            <tr>
+            <tr class="shapka">
                 <th>Куст</th>
                 <th>Месторождение</th>
                 <th onclick="sortTable(0)">Выход</th>
@@ -72,12 +120,13 @@
             {% endfor %}
         </tbody>
     </table>
+    <form action="KP_inf">
+        <button class="btn btn-primary_my_1 btn-block"><b>Подтверить</b></button>
+    </form>
 </div>
 
 
-   <form action="KP_inf">
-     <button class="btn btn-primary_my btn-block"><b>Подтверить</b></button>
-   </form>
+
 
 </div>
 

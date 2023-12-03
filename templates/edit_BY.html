@@ -24,19 +24,68 @@
             <input type="text" name="kust" value="{{BY.kust}}" class="form-control">
           </div>
           <div class="form-group">
-            <input type="text" name="m_e" value="{{BY.m_e}}" class="form-control">
+            <select name="m_e" required>
+                <option value="{{BY.m_e}}">"{{BY.m_e}}"</option>
+                <option value="ВС">ВС</option>
+                <option value="ВТК">ВТК</option>
+                <option value="ВПР">ВПР</option>
+                <option value="ВСТР">ВСТР</option>
+                <option value="ЕФР">ЕФР</option>
+                <option value="ЗУГ">ЗУГ</option>
+                <option value="КИН">КИН</option>
+                <option value="КУЗ">КУЗ</option>
+                <option value="КУДР">КУДР</option>
+                <option value="МБ">МБ</option>
+                <option value="МАМ">МАМ</option>
+                <option value="МАЙ">МАЙ</option>
+                <option value="МОСК">МОСК</option>
+                <option value="ОМБ">ОМБ</option>
+                <option value="ПЕТ">ПЕТ</option>
+                <option value="ПРД">ПРД</option>
+                <option value="ПРОп">ПРОп</option>
+                <option value="ПРОл">ПРОл</option>
+                <option value="ЭРГ">ЭРГ</option>
+                <option value="ПРЗ">ПРЗ</option>
+                <option value="САЛ">САЛ</option>
+                <option value="СОЛ">СОЛ</option>
+                <option value="СОР">СОР</option>
+                <option value="СБ">СБ</option>
+                <option value="СУГ">СУГ</option>
+                <option value="УГ">УБ</option>
+                <option value="ФН">ФН</option>
+                <option value="ЮБ">ЮБ</option>
+                <option value="ЮТЕПЛ">ЮТЕПЛ</option>
+                <option value="ЮС">ЮС</option>
+            </select>
           </div>
           <div class="form-group">
-            <input type="text" name="exit_date" value="{{BY.exit_date}}" class="form-control">
+            <input type="date" name="exit_date" value="{{BY.exit_date}}" class="form-control">
           </div>
           <div class="form-group">
-            <input type="text" name="GP" value="{{BY.GP}}" class="form-control">
+            <select name="gp" required>
+                <option value="{{BY.gp}}">"{{BY.gp}}"</option>
+                <option value="400">400</option>
+                <option value="320">320</option>
+                <option value="270">270</option>
+                <option value="250">250</option>
+                <option value="225">225</option>
+                <option value="200">200</option>
+            </select>
           </div>
           <div class="form-group">
-            <input type="text" name="RUO" value="{{BY.RUO}}" class="form-control">
+            <select name="ruo" required>
+                <option value="{{BY.ruo}}">"{{BY.ruo}}"</option>
+                <option value="1">РУО</option>
+                <option value="0">РВО</option>
+            </select>
+
           </div>
           <div class="form-group">
-            <input type="text" name="SNPH" value="{{BY.SNPH}}" class="form-control">
+            <select name="snph" required>
+                <option value="{{BY.snph}}">"{{BY.snph}}"</option>
+                <option value="1">СНПХ</option>
+                <option value="0">Другие ПО</option>
+            </select>
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">
