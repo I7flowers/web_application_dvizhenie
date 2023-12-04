@@ -1,125 +1,124 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8">
-    <title>Движение БУ</title>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <title>Движение БУ</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-</head>
-<body>
-    <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">Движение буровых установок</a>
-    </nav>
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Движение буровых установок</a>
+        </nav>
 
-    <div class="container pt-4">
-      <div class="row">
-    <div class="col-md-4 offset-md-4">
-      <div class="card card-body">
-        <form action="/BY_inf/update/{{BY.kust}}" method="POST">
-          <div class="form-group">
-            <input type="text" name="kust" value="{{BY.kust}}" class="form-control">
-          </div>
-          <div class="form-group">
-            <select name="m_e" required>
-                <option value="{{BY.m_e}}">"{{BY.m_e}}"</option>
-                <option value="ВС">ВС</option>
-                <option value="ВТК">ВТК</option>
-                <option value="ВПР">ВПР</option>
-                <option value="ВСТР">ВСТР</option>
-                <option value="ЕФР">ЕФР</option>
-                <option value="ЗУГ">ЗУГ</option>
-                <option value="КИН">КИН</option>
-                <option value="КУЗ">КУЗ</option>
-                <option value="КУДР">КУДР</option>
-                <option value="МБ">МБ</option>
-                <option value="МАМ">МАМ</option>
-                <option value="МАЙ">МАЙ</option>
-                <option value="МОСК">МОСК</option>
-                <option value="ОМБ">ОМБ</option>
-                <option value="ПЕТ">ПЕТ</option>
-                <option value="ПРД">ПРД</option>
-                <option value="ПРОп">ПРОп</option>
-                <option value="ПРОл">ПРОл</option>
-                <option value="ЭРГ">ЭРГ</option>
-                <option value="ПРЗ">ПРЗ</option>
-                <option value="САЛ">САЛ</option>
-                <option value="СОЛ">СОЛ</option>
-                <option value="СОР">СОР</option>
-                <option value="СБ">СБ</option>
-                <option value="СУГ">СУГ</option>
-                <option value="УГ">УБ</option>
-                <option value="ФН">ФН</option>
-                <option value="ЮБ">ЮБ</option>
-                <option value="ЮТЕПЛ">ЮТЕПЛ</option>
-                <option value="ЮС">ЮС</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <input type="date" name="exit_date" value="{{BY.exit_date}}" class="form-control">
-          </div>
-          <div class="form-group">
-            <select name="gp" required>
-                <option value="{{BY.gp}}">"{{BY.gp}}"</option>
-                <option value="400">400</option>
-                <option value="320">320</option>
-                <option value="270">270</option>
-                <option value="250">250</option>
-                <option value="225">225</option>
-                <option value="200">200</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <select name="ruo" required>
-                <option value="{{BY.ruo}}">"{{BY.ruo}}"</option>
-                <option value="1">РУО</option>
-                <option value="0">РВО</option>
-            </select>
+        <div class="container pt-4">
+            <div class="row">
+                <div class="col-md-4 offset-md-4">
+                    <div class="card card-body">
+                        <form action="/BY_inf/update/{{BY.kust}}" method="POST">
+                            <div class="form-group">
+                                <input type="text" name="kust" value="{{BY.kust}}" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <select name="m_e" required>
+                                    <option value="{{BY.m_e}}">"{{BY.m_e}}"</option>
+                                    <option value="ВС">ВС</option>
+                                    <option value="ВТК">ВТК</option>
+                                    <option value="ВПР">ВПР</option>
+                                    <option value="ВСТР">ВСТР</option>
+                                    <option value="ЕФР">ЕФР</option>
+                                    <option value="ЗУГ">ЗУГ</option>
+                                    <option value="КИН">КИН</option>
+                                    <option value="КУЗ">КУЗ</option>
+                                    <option value="КУДР">КУДР</option>
+                                    <option value="МБ">МБ</option>
+                                    <option value="МАМ">МАМ</option>
+                                    <option value="МАЙ">МАЙ</option>
+                                    <option value="МОСК">МОСК</option>
+                                    <option value="ОМБ">ОМБ</option>
+                                    <option value="ПЕТ">ПЕТ</option>
+                                    <option value="ПРД">ПРД</option>
+                                    <option value="ПРОп">ПРОп</option>
+                                    <option value="ПРОл">ПРОл</option>
+                                    <option value="ЭРГ">ЭРГ</option>
+                                    <option value="ПРЗ">ПРЗ</option>
+                                    <option value="САЛ">САЛ</option>
+                                    <option value="СОЛ">СОЛ</option>
+                                    <option value="СОР">СОР</option>
+                                    <option value="СБ">СБ</option>
+                                    <option value="СУГ">СУГ</option>
+                                    <option value="УГ">УБ</option>
+                                    <option value="ФН">ФН</option>
+                                    <option value="ЮБ">ЮБ</option>
+                                    <option value="ЮТЕПЛ">ЮТЕПЛ</option>
+                                    <option value="ЮС">ЮС</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input placeholder="{{BY.exit_date}}" type="text" onfocus="this.type='date'" onblur="if(this.value==''){this.type='text'}" name="exit_date" required>
+                            </div>
+                            <div class="form-group">
+                                <select name="gp" required>
+                                    <option value="{{BY.gp}}">"{{BY.gp}}"</option>
+                                    <option value="400">400</option>
+                                    <option value="320">320</option>
+                                    <option value="270">270</option>
+                                    <option value="250">250</option>
+                                    <option value="225">225</option>
+                                    <option value="200">200</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select name="ruo" required>
+                                    <option value="{{BY.ruo}}">"{{BY.ruo}}"</option>
+                                    <option value="1">РУО</option>
+                                    <option value="0">РВО</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select name="snph" required>
+                                    <option value="{{BY.snph}}">"{{BY.snph}}"</option>
+                                    <option value="1">СНПХ</option>
+                                    <option value="0">Другие ПО</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">
+                            Обновить
+                            </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-          </div>
-          <div class="form-group">
-            <select name="snph" required>
-                <option value="{{BY.snph}}">"{{BY.snph}}"</option>
-                <option value="1">СНПХ</option>
-                <option value="0">Другие ПО</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">
-              Обновить
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-    </div>
+        <script>
+        const btnDelete= document.querySelectorAll('.btn-delete');
+        if(btnDelete) {
+          const btnArray = Array.from(btnDelete);
+          btnArray.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+              if(!confirm('Вы точно хотите удалить объект?')){
+                e.preventDefault();
+              }
+            });
+          })
+        }
 
-<script>
-const btnDelete= document.querySelectorAll('.btn-delete');
-if(btnDelete) {
-  const btnArray = Array.from(btnDelete);
-  btnArray.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      if(!confirm('Вы точно хотите удалить объект?')){
-        e.preventDefault();
-      }
-    });
-  })
-}
+        $(document).ready(function() {
+            $('#example').DataTable({
+              "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "All"]],
+                "iDisplayLength": 10
+               }
+            );
+        } );
 
-$(document).ready(function() {
-    $('#example').DataTable({
-      "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "All"]],
-        "iDisplayLength": 10
-       }
-    );
-} );
-
-</script>
-  </body>
+        </script>
+    </body>
 </html>
 

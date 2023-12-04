@@ -4,7 +4,6 @@ import psycopg2
 import psycopg2.extras
 from dvizhenie.starting import main, final
 
-
 app = Flask(__name__)
 app.secret_key = '122333'
 
@@ -41,13 +40,22 @@ def add_BY():
         kust = request.form['kust']
         m_e = request.form['m_e']
         exit_date = request.form['exit_date']
-        gp = request.form['GP']
-        ruo = request.form['RUO']
-        snph = request.form['SNPH']
-        cur.execute('INSERT INTO exit_(kust, m_e, exit_date, GP, RUO, SNPH) VALUES (%s, %s, %s, %s, %s, %s)',
-                    (kust, m_e, exit_date, gp, ruo, snph))
+        gp = request.form['gp']
+        ruo = request.form['ruo']
+        snph = request.form['snph']
+        cur.execute('SELECT(EXISTS(SELECT kust FROM exit_ WHERE kust=%s))', (kust,))
+        kust_exists = cur.fetchone()[0]
+        if kust_exists:
+            flash('Такой куст уже есть в списке!', 'error')
+        elif m_e == 'error' or gp == 'error' or ruo == 'error' or snph == 'error':
+            print('туту')
+            flash('Внесите корректные данные!', 'error')
+
+        else:
+            cur.execute('INSERT INTO exit_(kust, m_e, exit_date, GP, RUO, SNPH) VALUES (%s, %s, %s, %s, %s, %s)',
+                        (kust, m_e, exit_date, gp, ruo, snph))
+            flash('Информация успешно добавлена', 'success')
         conn.commit()
-        flash('Информация успешно добавлена')
         return redirect(url_for('BY_inf'))
 
 
@@ -57,7 +65,6 @@ def edit_BY(kust):
     cur.execute('SELECT * FROM exit_ WHERE kust=%s', (kust,))
     data = cur.fetchall()
     cur.close()
-    print(data[0])
     return render_template('edit_BY.html', BY=data[0])
 
 
@@ -71,8 +78,9 @@ def update_BY(kust):
         ruo = request.form['ruo']
         snph = request.form['snph']
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cur.execute('UPDATE exit_ SET m_e=%s, exit_date=%s, GP=%s, RUO=%s, SNPH=%s WHERE kust=%s',(m_e, exit_date, gp, ruo, snph, kust))
-        flash('Информация обновлена')
+        cur.execute('UPDATE exit_ SET m_e=%s, exit_date=%s, GP=%s, RUO=%s, SNPH=%s WHERE kust=%s',
+                    (m_e, exit_date, gp, ruo, snph, kust))
+        flash('Информация обновлена', 'success')
         conn.commit()
         return redirect(url_for('BY_inf'))
 
@@ -82,9 +90,8 @@ def delete_BY(kust):
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     cur.execute('SELECT * FROM exit_ WHERE kust=%s', (kust,))
     data = cur.fetchall()[0]
-    print(data[0])
     cur.execute('DELETE FROM exit_ WHERE kust=%s', (data[0],))
-    flash('Куст удален')
+    flash('Куст удален', 'success')
     conn.commit()
     return redirect(url_for('BY_inf'))
 
@@ -106,13 +113,20 @@ def add_KP():
         m_e = request.form['m_e']
         first_stage = request.form['first_stage']
         second_stage = request.form['second_stage']
-        GP = request.form['GP']
-        RUO = request.form['RUO']
-        SNPH = request.form['SNPH']
-        cur.execute('INSERT INTO enterance(kust, m_e, first_stage, second_stage, GP, RUO, SNPH) VALUES (%s, %s, %s, %s, %s, %s, %s)',
-                    (kust, m_e, first_stage, second_stage, GP, RUO, SNPH))
+        gp = request.form['gp']
+        ruo = request.form['ruo']
+        snph = request.form['snph']
+        cur.execute('SELECT(EXISTS(SELECT kust FROM enterance WHERE kust=%s))', (kust,))
+        kust_exists = cur.fetchone()[0]
+        if kust_exists:
+            flash('Такой куст уже есть в списке!', 'error')
+        elif m_e == 'error' or gp == 'error' or ruo == 'error' or snph == 'error':
+            flash('Внесите корректные данные!', 'error')
+        else:
+            cur.execute('INSERT INTO enterance(kust, m_e, first_stage, second_stage, GP, RUO, SNPH) VALUES (%s, %s, '
+                        '%s, %s, %s, %s, %s)',(kust, m_e, first_stage, second_stage, gp, ruo, snph))
+            flash('Информация успешно добавлена', 'success')
         conn.commit()
-        flash('Информация успешно добавлена')
         return redirect(url_for('KP_inf'))
 
 
@@ -132,12 +146,14 @@ def update_kust(kust):
         m_e = request.form['m_e']
         first_stage = request.form['first_stage']
         second_stage = request.form['second_stage']
-        GP = request.form['GP']
-        RUO = request.form['RUO']
-        SNPH = request.form['SNPH']
+        gp = request.form['gp']
+        ruo = request.form['ruo']
+        snph = request.form['snph']
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        cur.execute('UPDATE ENTERANCE SET m_e=%s, first_stage=%s, second_stage=%s, GP=%s, RUO=%s, SNPH=%s WHERE kust=%s',(m_e, first_stage, second_stage, GP, RUO, SNPH, kust))
-        flash('Информация обновлена')
+        cur.execute(
+            'UPDATE ENTERANCE SET m_e=%s, first_stage=%s, second_stage=%s, GP=%s, RUO=%s, SNPH=%s WHERE kust=%s',
+            (m_e, first_stage, second_stage, gp, ruo, snph, kust))
+        flash('Информация обновлена', 'success')
         conn.commit()
         return redirect(url_for('KP_inf'))
 
@@ -148,7 +164,7 @@ def delete_kust(kust):
     cur.execute('SELECT * FROM enterance WHERE kust=%s', (kust,))
     data = cur.fetchall()[0]
     cur.execute('DELETE FROM enterance WHERE kust=%s', (data[0],))
-    flash('Куст удален')
+    flash('Куст удален', 'success')
     conn.commit()
     return redirect(url_for('KP_inf'))
 
@@ -178,8 +194,8 @@ def commit(kust_ex, kust_ent):
     cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     cur.execute('SELECT * FROM for_handmade_raschet WHERE kust_ex=%s AND kust_ent=%s', (kust_ex, kust_ent))
     data = cur.fetchone()
-    print(data)
-    cur.execute('INSERT INTO final(kust_ex, exit_date, kust_ent, gen_rating, comment) VALUES (%s, %s, %s, %s, %s)', (data[0], data[9], data[1], data[2], data[8]))
+    cur.execute('INSERT INTO final(kust_ex, exit_date, kust_ent, gen_rating, comment) VALUES (%s, %s, %s, %s, %s)',
+                (data[0], data[9], data[1], data[2], data[8]))
     cur.execute('DELETE FROM for_handmade_raschet WHERE kust_ex=%s OR kust_ent=%s', (data[0], data[1]))
     conn.commit()
     return redirect(url_for('handmade_raschet1'))
