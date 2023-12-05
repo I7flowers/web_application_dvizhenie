@@ -2,55 +2,55 @@
 
 
 {% block body %}
-<div class="row"><h3>Ручное определение движения на 1,5 месяца вперед</h3></div>
 <div class="row">
-<div class="col-md-18">
-    <table id="example" class="table table-striped table-bordered" style="width:150%">
-        <thead>
-            <tr>
-                <th colspan="2">Движение</th>
-                <th colspan="8">Рейтинг</th>
-                <td rowspan="2"><b>Действия</b></td>
-            </tr>
-            <tr>
-                <th>С куста</th>
-                <th onclick="sortTable(0)">Выход</th>
-                <th>На куст</th>
-                <th>Общий</th>
-                <th>ГП</th>
-                <th>1 этап</th>
-                <th>2 этап</th>
-                <th>Логистика</th>
-                <th>РУО</th>
-                <th>Комментарий</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in list_for_handmade_raschet %}
-            <tr>
-                 <td>{{row[0]}}</td>
-                 <td>{{row[9]}}</td>
-                 <td>{{row[1]}}</td>
-                 <td>{{row[2]}}</td>
-                 <td>{{row[3]}}</td>
-                 <td>{{row[4]}}</td>
-                 <td>{{row[5]}}</td>
-                 <td>{{row[6]}}</td>
-                 <td>{{row[7]}}</td>
-                 <td>{{row[8]}}</td>
-                 <td>
-                    <a href="/handmade_raschet/commit/{{row[0]}}/{{row[1]}}" class="btn btn-danger btn-sm">Подтвердить</a>
-                 </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <h3>Ручное определение движения на 1,5 месяца вперед</h3>
+    <h5>Последующее движение рассчитывается автоматически по максимальному рейтингу</h5>
 </div>
-<div class="row"><h3>Последующее движение рассчитывается автоматически по максимальному рейтингу</h3></div>
-
-   <form action="index_after_raschet">
-     <button class="btn btn-primary_my btn-block"><b>Перейти к результату</b></button>
-   </form>
-
+<div class="row">
+    <div class="col-md-18">
+        <table id="example" class="table table-striped table-bordered" style="width:150%">
+            <thead>
+                <tr class="shapka">
+                    <th colspan="3">Движение</th>
+                    <th colspan="7">Рейтинг</th>
+                    <td rowspan="2"><b>Действия</b></td>
+                </tr>
+                <tr class="shapka">
+                    <th style="width: 100px">С куста</th>
+                    <th style="width: 120px">Выход</th>
+                    <th style="width: 100px">На куст</th>
+                    <th>Общий</th>
+                    <th>ГП</th>
+                    <th style="width: 90px">1 этап</th>
+                    <th style="width: 90px">2 этап</th>
+                    <th>Логист.</th>
+                    <th>РУО</th>
+                    <th>Комментарий</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in list_for_handmade_raschet %}
+                    <tr>
+                         <td><b>{{row[0]}}</b></td>
+                         <td>{{row[9]}}</td>
+                         <td><b>{{row[1]}}</b></td>
+                         <td><b>{{row[2]}}</b></td>
+                         <td>{{row[3]}}</td>
+                         <td>{{row[4]}}</td>
+                         <td>{{row[5]}}</td>
+                         <td>{{row[6]}}</td>
+                         <td>{{row[7]}}</td>
+                         <td>{{row[8]}}</td>
+                         <td>
+                            <a href="/handmade_raschet/commit/{{row[0]}}/{{row[1]}}" class="btn btn-commit btn-sm">Подтвердить</a>
+                         </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="index_after_raschet">
+            <button class="btn btn-primary_my_1 btn-block"><b>Перейти к результату</b></button>
+        </form>
+    </div>
 </div>
 {% endblock %}

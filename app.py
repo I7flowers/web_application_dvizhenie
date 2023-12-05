@@ -69,7 +69,7 @@ def edit_BY(kust):
 
 
 @app.route('/BY_inf/update/<kust>', methods=['POST'])
-def update_BY(kust):
+def update_BY():
     if request.method == 'POST':
         kust = request.form['kust']
         m_e = request.form['m_e']
@@ -124,7 +124,7 @@ def add_KP():
             flash('Внесите корректные данные!', 'error')
         else:
             cur.execute('INSERT INTO enterance(kust, m_e, first_stage, second_stage, GP, RUO, SNPH) VALUES (%s, %s, '
-                        '%s, %s, %s, %s, %s)',(kust, m_e, first_stage, second_stage, gp, ruo, snph))
+                        '%s, %s, %s, %s, %s)', (kust, m_e, first_stage, second_stage, gp, ruo, snph))
             flash('Информация успешно добавлена', 'success')
         conn.commit()
         return redirect(url_for('KP_inf'))
@@ -140,7 +140,7 @@ def edit_KP(kust):
 
 
 @app.route('/KP_inf/update/<kust>', methods=['POST'])
-def update_kust(kust):
+def update_kust():
     if request.method == 'POST':
         kust = request.form['kust']
         m_e = request.form['m_e']

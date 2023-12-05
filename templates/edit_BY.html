@@ -98,26 +98,25 @@
         </div>
 
         <script>
-        const btnDelete= document.querySelectorAll('.btn-delete');
-        if(btnDelete) {
-          const btnArray = Array.from(btnDelete);
-          btnArray.forEach((btn) => {
-            btn.addEventListener('click', (e) => {
-              if(!confirm('Вы точно хотите удалить объект?')){
-                e.preventDefault();
-              }
-            });
-          })
-        }
+            const btnDelete= document.querySelectorAll('.btn-delete');
+            if(btnDelete) {
+              const btnArray = Array.from(btnDelete);
+              btnArray.forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                  if(!confirm('Вы точно хотите удалить объект?')){
+                    e.preventDefault();
+                  }
+                });
+              })
+            }
 
-        $(document).ready(function() {
-            $('#example').DataTable({
-              "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "All"]],
-                "iDisplayLength": 10
-               }
-            );
-        } );
-
+            $(document).ready(function() {
+                $('#example').DataTable({
+                  "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "All"]],
+                    "iDisplayLength": 10
+                   }
+                );
+            } );
         </script>
     </body>
 </html>

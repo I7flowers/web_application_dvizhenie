@@ -1,85 +1,83 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8">
-    <title>Движение БУ</title>
-<link href="static/css/extra.css" rel="stylesheet">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <title>Движение БУ</title>
+        <link href="static/css/extra.css" rel="stylesheet">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Движение буровых установок</a>
+        </nav>
+        <div class="container pt-4">
+            {% block body %}
+            {% endblock %}
+        </div>
 
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-</head>
-<body>
-    <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">Движение буровых установок</a>
-    </nav>
-
-    <div class="container pt-4">
-      {% block body %}
-      {% endblock %}
-    </div>
-
-<script>
-const btnDelete= document.querySelectorAll('.btn-delete');
-if(btnDelete) {
-  const btnArray = Array.from(btnDelete);
-  btnArray.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      if(!confirm('Вы точно хотите удалить объект?')){
-        e.preventDefault();
-      }
-    });
-  })
-}
-
-$(document).ready(function() {
-    $('#example').DataTable({
-      "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "All"]],
-        "iDisplayLength": 25
-       }
-    );
-} );
-
-  function sortTable(n) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("example");
-  switching = true;
-  dir = "asc";
-  while (switching) {
-    switching = false;
-    rows = table.getElementsByTagName("TR");
-    for (i = 1; i < (rows.length - 1); i++) {
-      shouldSwitch = false;
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          break;
+        <script>
+        const btnDelete= document.querySelectorAll('.btn-delete');
+        if(btnDelete) {
+          const btnArray = Array.from(btnDelete);
+          btnArray.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+              if(!confirm('Вы точно хотите удалить объект?')){
+                e.preventDefault();
+              }
+            });
+          })
         }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          break;
+
+        $(document).ready(function() {
+            $('#example').DataTable({
+              "aLengthMenu": [[3, 5, 10, 25, -1], [3, 5, 10, 25, "All"]],
+                "iDisplayLength": 25
+               }
+            );
+        } );
+
+          function sortTable(n) {
+          var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+          table = document.getElementById("example");
+          switching = true;
+          dir = "asc";
+          while (switching) {
+            switching = false;
+            rows = table.getElementsByTagName("TR");
+            for (i = 1; i < (rows.length - 1); i++) {
+              shouldSwitch = false;
+              x = rows[i].getElementsByTagName("TD")[n];
+              y = rows[i + 1].getElementsByTagName("TD")[n];
+              if (dir == "asc") {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                  shouldSwitch = true;
+                  break;
+                }
+              } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                  shouldSwitch = true;
+                  break;
+                }
+              }
+            }
+            if (shouldSwitch) {
+              rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+              switching = true;
+              switchcount ++;
+            } else {
+              if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+              }
+            }
+          }
         }
-      }
-    }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      switchcount ++;
-    } else {
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
-  }
-}
 
 
 
-</script>
-  </body>
+        </script>
+    </body>
 </html>
