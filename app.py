@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, request, flash, redirect
 
 import psycopg2
 import psycopg2.extras
-from dvizhenie.starting import main, final
+from dvizhenie1.starting import main, final
 
 app = Flask(__name__)
 app.secret_key = '122333'

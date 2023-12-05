@@ -2,7 +2,7 @@ import datetime
 
 import psycopg2
 
-from dvizhenie.BD_connection import host, user, password, db_name, port
+from dvizhenie1.BD_connection import host, user, password, db_name, port
 
 
 def handmade_raschet():

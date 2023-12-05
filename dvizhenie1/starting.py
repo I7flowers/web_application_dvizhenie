@@ -1,7 +1,7 @@
 import psycopg2
 
-import dvizhenie.Raschet
-from dvizhenie.Raschet_filling import clear_not_all, raschet
+import dvizhenie1.Raschet
+from dvizhenie1.Raschet_filling import clear_not_all, raschet
 
 
 def main():
