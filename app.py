@@ -69,7 +69,7 @@ def edit_BY(kust):
 
 
 @app.route('/BY_inf/update/<kust>', methods=['POST'])
-def update_BY():
+def update_BY(kust):
     if request.method == 'POST':
         kust = request.form['kust']
         m_e = request.form['m_e']
@@ -140,7 +140,7 @@ def edit_KP(kust):
 
 
 @app.route('/KP_inf/update/<kust>', methods=['POST'])
-def update_kust():
+def update_kust(kust):
     if request.method == 'POST':
         kust = request.form['kust']
         m_e = request.form['m_e']
@@ -151,7 +151,7 @@ def update_kust():
         snph = request.form['snph']
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
         cur.execute(
-            'UPDATE ENTERANCE SET m_e=%s, first_stage=%s, second_stage=%s, GP=%s, RUO=%s, SNPH=%s WHERE kust=%s',
+            'UPDATE enterance SET m_e=%s, first_stage=%s, second_stage=%s, GP=%s, RUO=%s, SNPH=%s WHERE kust=%s',
             (m_e, first_stage, second_stage, gp, ruo, snph, kust))
         flash('Информация обновлена', 'success')
         conn.commit()
@@ -212,4 +212,4 @@ def index_auto_raschet():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', debug=True)
