@@ -1,4 +1,5 @@
 from flask import Flask, render_template, url_for, request, flash, redirect
+from dvizhenie1.BD_connection import host, user, password, db_name, port
 
 import psycopg2
 import psycopg2.extras
@@ -7,12 +8,7 @@ from dvizhenie1.starting import main, final
 app = Flask(__name__)
 app.secret_key = '122333'
 
-DB_HOST = "127.0.0.1"
-DB_USER = "postgres"
-DB_PASS = "122333"
-DB_NAME = "dvizhenie_BU"
-
-conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
+conn = psycopg2.connect(dbname=db_name, user=user, password=password, host=host)
 
 
 @app.route('/')

@@ -7,13 +7,6 @@ m_e_spisok = ['ВС', 'ВТК', 'ВПР', 'ВСТР', 'ЕФР', 'ЗУГ', 'КИ�
               'ЮБ', 'ЮТЕПЛ', 'ЮС']
 GP_spisok = [200, 225, 250, 270, 320, 400]
 
-# for connection with BD
-host = "127.0.0.1"
-user = "postgres"
-password = "122333"
-db_name = "dvizhenie_BU"
-port = "5432"
-
 
 # coeff for rating
 class Coeff(NamedTuple):

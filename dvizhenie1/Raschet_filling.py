@@ -1,7 +1,8 @@
 from datetime import timedelta
 from typing import NamedTuple
 
-from dvizhenie1.get_dop_inf import host, user, password, db_name, port, Rating
+from dvizhenie1.get_dop_inf import Rating
+from dvizhenie1.BD_connection import host, user, password, db_name, port
 
 import psycopg2
 
