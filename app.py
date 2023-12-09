@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request, flash, redirect
-from dvizhenie1.BD_connection import host, user, password, db_name, port
+from dvizhenie1.BD_connection import host, user, password, db_name
 
 import psycopg2
 import psycopg2.extras

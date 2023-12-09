@@ -2,7 +2,7 @@ from datetime import timedelta
 from typing import NamedTuple
 
 from dvizhenie1.get_dop_inf import Rating
-from dvizhenie1.BD_connection import host, user, password, db_name, port
+from dvizhenie1.BD_connection import host, user, password, db_name
 
 import psycopg2
 
@@ -12,8 +12,7 @@ def GP():
         host=host,
         user=user,
         password=password,
-        database=db_name,
-        port=port
+        database=db_name
     )
     connection.autocommit = True
     with connection.cursor() as cursor:
@@ -73,8 +72,7 @@ def Ist():
         host=host,
         user=user,
         password=password,
-        database=db_name,
-        port=port
+        database=db_name
     )
     connection.autocommit = True
     with connection.cursor() as cursor:
@@ -128,8 +126,7 @@ def IInd():
         host=host,
         user=user,
         password=password,
-        database=db_name,
-        port=port
+        database=db_name
     )
     connection.autocommit = True
     with connection.cursor() as cursor:
@@ -190,8 +187,7 @@ def RUO():
         host=host,
         user=user,
         password=password,
-        database=db_name,
-        port=port
+        database=db_name
     )
     connection.autocommit = True
     with connection.cursor() as cursor:
@@ -234,8 +230,7 @@ def ME():
         host=host,
         user=user,
         password=password,
-        database=db_name,
-        port=port
+        database=db_name
     )
     connection.autocommit = True
     with connection.cursor() as cursor:
@@ -261,8 +256,7 @@ def SNPH():
         host=host,
         user=user,
         password=password,
-        database=db_name,
-        port=port
+        database=db_name
     )
     connection.autocommit = True
     with connection.cursor() as cursor:
@@ -286,8 +280,7 @@ def clear():
         host=host,
         user=user,
         password=password,
-        database=db_name,
-        port=port
+        database=db_name
     )
     connection.autocommit = True
     with connection.cursor() as cursor:
@@ -305,8 +298,7 @@ def clear_not_all():
         host=host,
         user=user,
         password=password,
-        database=db_name,
-        port=port
+        database=db_name
     )
     connection.autocommit = True
     with connection.cursor() as cursor:
@@ -322,8 +314,7 @@ def get_rating(Rating: NamedTuple):
         host=host,
         user=user,
         password=password,
-        database=db_name,
-        port=port
+        database=db_name
     )
     connection.autocommit = True
     with connection.cursor() as cursor:

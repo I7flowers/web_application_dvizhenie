@@ -2,7 +2,7 @@ import datetime
 
 import psycopg2
 
-from dvizhenie1.BD_connection import host, user, password, db_name, port
+from dvizhenie1.BD_connection import host, user, password, db_name
 
 
 def handmade_raschet():
@@ -10,8 +10,7 @@ def handmade_raschet():
         host=host,
         user=user,
         password=password,
-        database=db_name,
-        port=port
+        database=db_name
     )
     connection.autocommit = True
     with connection.cursor() as cursor:
@@ -30,8 +29,7 @@ def auto_raschet():
         host=host,
         user=user,
         password=password,
-        database=db_name,
-        port=port
+        database=db_name
     )
     connection.autocommit = True
     with connection.cursor() as cursor:
